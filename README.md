@@ -83,7 +83,7 @@ Every agent response goes through a **review modal** before being saved to the w
 
 ### Prerequisites
 - A modern web browser (Chrome, Firefox, Edge)
-- A [Gemini API key](https://aistudio.google.com) (free)
+
 
 ### Run Locally
 
