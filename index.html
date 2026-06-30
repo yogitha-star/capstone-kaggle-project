@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROBO-OS | Robotics AI Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- THIN COLLAPSIBLE SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span>AGENTS</span>
+        <button class="sidebar-close" id="sidebar-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="sidebar-agents">
+        <div class="sidebar-agent" id="side-idea"><i class="fa-solid fa-lightbulb"></i><span>Idea</span><span class="sa-status">idle</span></div>
+        <div class="sidebar-agent" id="side-components"><i class="fa-solid fa-list-check"></i><span>Components</span><span class="sa-status">idle</span></div>
+        <div class="sidebar-agent" id="side-build"><i class="fa-solid fa-screwdriver-wrench"></i><span>Build</span><span class="sa-status">idle</span></div>
+        <div class="sidebar-agent" id="side-trouble"><i class="fa-solid fa-triangle-exclamation"></i><span>Troubleshoot</span><span class="sa-status">idle</span></div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-mcp">
+        <i class="fa-solid fa-circle-nodes"></i>
+        <span>MCP: <span id="mcp-status-text">connecting</span></span>
+      </div>
+      <div class="sidebar-divider"></div>
+      <button class="sidebar-link" id="open-logs-btn"><i class="fa-solid fa-terminal"></i> System Logs</button>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-api">
+        <label>Gemini API Key</label>
+        <input type="password" id="api-key-input" placeholder="Paste key..." />
+        <button id="save-key-btn">Connect</button>
+        <div class="sidebar-api-status" id="api-status-badge"><span class="badge-dot"></span><span id="api-status-text">Sandbox</span></div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- MAIN CENTER COLUMN -->
+    <main class="main-col">
+
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <button class="hamburger-btn" id="hamburger-btn"><i class="fa-solid fa-bars"></i></button>
+        <div class="top-bar-title"><i class="fa-solid fa-robot"></i> ROBO-OS</div>
+        <button class="new-chat-btn" id="clear-chat-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
+      <!-- CHAT SCROLL AREA -->
+      <div class="chat-scroll" id="chat-container">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon"><i class="fa-solid fa-robot"></i></div>
+          <h1>ROBO-OS</h1>
+          <p>What would you like to build?</p>
+        </div>
+      </div>
+
+      <!-- BOTTOM INPUT AREA -->
+      <div class="bottom-area">
+        <div class="pill-prompts">
+          <button class="pill-btn" data-prompt="Suggest 3 fun robotics projects for a beginner using Arduino.">🦾 Robot Arm Ideas</button>
+          <button class="pill-btn" data-prompt="What parts do I need to build a line follower robot?">🚗 Line Follower Parts</button>
+          <button class="pill-btn" data-prompt="How do I wire and code an HC-SR04 ultrasonic sensor?">🔧 Arduino Help</button>
+        </div>
+        <div class="input-bar">
+          <textarea id="chat-input" placeholder="Ask anything about robotics..." rows="1"></textarea>
+          <button id="send-btn"><i class="fa-solid fa-arrow-up"></i></button>
+        </div>
+        <div class="input-hint">ROBO-OS can route to Idea, Components, Build & Troubleshooting agents</div>
+      </div>
+    </main>
+
+    <!-- SYSTEM LOGS DRAWER (for judges) -->
+    <div class="logs-drawer-overlay hidden" id="logs-drawer-overlay"></div>
+    <div class="logs-drawer hidden" id="logs-drawer">
+      <div class="logs-drawer-header">
+        <span><i class="fa-solid fa-terminal"></i> SYSTEM LOGS — MCP & Agent Transactions</span>
+        <button id="close-logs-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="logs-drawer-body" id="logs-terminal">
+        <div class="log-line system-log">[SYSTEM]: ROBO-OS initialized.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY MODAL -->
+  <div class="modal-overlay hidden" id="security-modal">
+    <div class="modal-glass modal-security">
+      <div class="modal-header">
+        <div class="modal-title"><i class="fa-solid fa-shield-halved"></i><span>SECURITY GUARDRAIL</span></div>
+      </div>
+      <div class="modal-body" id="security-modal-body">Query blocked.</div>
+      <div class="modal-actions">
+        <button class="modal-btn btn-approve" id="security-modal-close"><i class="fa-solid fa-xmark"></i> Dismiss</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
