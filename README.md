@@ -128,7 +128,7 @@ robo-os/
 
 ## 👩‍💻 Author
 
-**Yogitha** — B.Tech Cybersecurity, GCET Hyderabad  
+**Yogitha**  
 GitHub: [github.com/yogitha-star](https://github.com/yogitha-star)
 
 ---
